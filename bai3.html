@@ -1,0 +1,80 @@
+<table border="1px">
+    <tr>
+        <td>Username:</td>
+        <td>
+            <input type="text" name="name" id="name" onkeyup="check()" />
+        </td>
+        <td>
+            <div id="z-name"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>Password:</td>
+        <td>
+            <input type="text" name="password" id="password" onkeyup="check()" />
+        </td>
+        <td>
+            <div id="z-password"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>Confirm Password:</td>
+        <td>
+            <input type="text" name="cpassword" id="cpassword" onkeyup="password()" />
+        </td>
+        <td>
+            <div id="z-cpassword"></div>
+        </td>
+    </tr>
+	<tr>
+        <td>Email Address:</td>
+        <td>
+            <input type="text" name="email" id="email" onkeyup="check()" />
+        </td>
+        <td>
+            <div id="z-email"></div>
+        </td>
+    </tr>
+</table>
+<input type="button" name="submit" value="Submit" />
+<Script>
+function check() {
+ 
+    var data = new Array();
+    data[0] = document.getElementById('name').value;
+    data[1] = document.getElementById('email').value;
+    data[2] = document.getElementById('password').value;
+    data[3] = document.getElementById('cpassword').value;
+ 
+    var myerror = new Array();
+    myerror[0] = "<span style='color:red,font-weight:bold'>User name required</span>";
+    myerror[1] = "<span style='color:red,font-weight:bold'>Email required</span>";
+    myerror[2] = "<span style='color:red,font-weight:bold'>Password required</span>";
+    myerror[3] = "<span style='color:red,font-weight:bold'>Password is not correct</span>";
+ 
+    var nearby = new Array("z-name", "z-email", "z-password", "z-cpassword");
+ 
+    for (i in data) {
+        var error = myerror[i];
+        var div = nearby[i];
+ 
+        if (data[i]=="") {
+            document.getElementById(div).innerHTML = error;
+        } else {
+            document.getElementById(div).innerHTML = "OK!";
+        }
+    }
+ 
+}
+function password() {
+    var fpw = document.getElementById("password").value;
+    var spw = document.getElementById("cpassword").value;
+ 
+    if (fpw==spw) {
+        document.getElementById('z-cpassword').innerHTML = "Password is correct";
+    } else {
+        document.getElementById('z-cpassword').innerHTML = "<span color='red'>Password is not correct</span>";
+    }
+}
+
+</Script>
